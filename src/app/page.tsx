@@ -11,7 +11,7 @@ export default function Home() {
   });
 
   const changeStage = (stage: string, data: any) => {
-    setState({...state, stage, data: { [state.stage]: data }})
+    setState({...state, stage, data: { ...(state.data), [state.stage]: data }})
   }
 
   const flowComponent = {
