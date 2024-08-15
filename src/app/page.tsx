@@ -1,6 +1,6 @@
 'use client'
 import Image from "next/image";
-import Stage1 from "./components/stage1";
+import Stage from "./components/stage";
 import { ReactNode, useState } from "react";
 
 
@@ -10,9 +10,13 @@ export default function Home() {
     data: {}
   });
 
+  const changeStage = (stage: string, data: any) => {
+    setState({...state, stage, data: { [state.stage]: data }})
+  }
+
   const flowComponent = {
-    'stage1': <Stage1 key="stage1" submitCallback={(fieldData: string) => {setState({...state, stage: 'stage2', data: { ...state.data, stage1: fieldData }})}} />,
-    'stage2': <Stage1 key="stage2" submitCallback={(fieldData: string) => {setState({...state, stage: 'stage3', data: { ...state.data, stage2: fieldData }})}} />,
+    'stage1': <Stage key="stage1" title="Stage 1" submitCallback={(fieldData: string) => changeStage('stage2', fieldData)} />,
+    'stage2': <Stage key="stage2" title="Stage 2" submitCallback={(fieldData: string) => changeStage('stage3', fieldData)} />,
     'stage3': <>{JSON.stringify(state.data)}</>,
     default: <>Error</>
    }[state.stage]

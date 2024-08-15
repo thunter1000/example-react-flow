@@ -2,9 +2,10 @@
 import { FormEvent, useState } from "react"
 
 interface Stage1Props {
+  title: string,
   submitCallback: (fieldData: string) => void
 }
-const Stage1: React.FC<Stage1Props> = ({submitCallback}): JSX.Element =>
+const Stage: React.FC<Stage1Props> = ({title, submitCallback}): JSX.Element =>
 {
   const [text, setText] = useState('');
 
@@ -19,8 +20,8 @@ const Stage1: React.FC<Stage1Props> = ({submitCallback}): JSX.Element =>
   return (<>
     <form className="max-w-sm mx-auto" onSubmit={onSubmit}>
       <div className="mb-5">
-        <label htmlFor="" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-          Your email
+        <label htmlFor="" className="block mb-2 text-sm font-medium text-gray-900">
+          {title ?? 'Undefined'}
         </label>
         <input type="text" value={text} onChange={e => setText(e.target.value)} id="field" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Example field" required />
       </div>
@@ -29,4 +30,4 @@ const Stage1: React.FC<Stage1Props> = ({submitCallback}): JSX.Element =>
   </>)
 }
 
-export default Stage1
+export default Stage
