@@ -6,38 +6,16 @@ import Stage2 from "./components/old/Stage2";
 
 
 export default function Home() {
-  const [state, setState] = useState<{
-    stage1State?: Stage1State,
-  }>({
-  });
+  const [currentStage, setCurrentStage] = useState<ReactNode>(null);
 
-  var flowComponent: ReactNode = <></>;
-
-  if (state.stage1State === undefined) {
-    flowComponent = <Stage1 setNextStage={(stage, state) => {
-      setState({stage1State: state});
-    }} previousState={null}/>;
-  } /*else {
-    flowComponent = <Stage2 previousState={state.stage1State} setNextStage={(stage, state) => {
-      setState({stage2State: state});
-    }} />;
-  }*/
-
-
-
+  if (currentStage === null) {
+    // Starting point.
+    setCurrentStage(<Stage1 setNextStage={(nextStage: ReactNode) => setCurrentStage(nextStage)} />);
+  }
 
   return (
     <main>
-      {flowComponent}
-      <div className="prose m-2">
-        <hr className="my-9"/>
-        <h1>Debug</h1>
-
-        <h2>State Data:</h2>
-        <pre>
-        {JSON.stringify(state, null, 2)}
-        </pre>
-      </div>
+      {currentStage || <></>}
     </main>
   );
 }
