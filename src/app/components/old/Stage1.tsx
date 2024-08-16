@@ -1,25 +1,21 @@
 'use client'
+import { FormEvent, useState } from "react"
+import Stage2 from "./Stage2";
 
-import { FormEvent, useState } from "react";
-
-
-export interface Stage1State {
-  text: string
+interface Stage1Props extends StageProps {
 }
 
-
-interface Stage1Props extends StageProps<null, Stage1State> {
-}
-
-const Stage1: React.FC<Stage1Props> = ({setNextStage}): JSX.Element =>
+const Stage1: React.FC<Stage1Props> = ({flowState, currentState, setStage }): JSX.Element =>
 {
-  const onSubmit = (e : FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setNextStage('end', {text});
-  }
-
   const [text, setText] = useState('');
 
+  const onSubmit = (e : FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    setStage({...currentState, text}, Stage2.name);
+  }
+
+  
 
   return (<>
     <form className="max-w-sm mx-auto" onSubmit={onSubmit}>
@@ -34,4 +30,4 @@ const Stage1: React.FC<Stage1Props> = ({setNextStage}): JSX.Element =>
   </>)
 }
 
-export default Stage1;
+export default Stage1

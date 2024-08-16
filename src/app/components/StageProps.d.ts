@@ -1,5 +1,4 @@
-interface StageProps {
-  flowState: { stage: string, data: {[key:string]: any} },
-  currentState: any,
-  setStage: (stageData: any, stage?: string) => void
+interface StageProps<PreviousState, NextState> {
+  previousState: PreviousState,
+  setNextStage: (stage: string, state: NextState) => void
 }
