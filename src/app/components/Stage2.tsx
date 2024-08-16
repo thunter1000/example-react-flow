@@ -1,41 +1,37 @@
 'use client'
-import { FormEvent, useState } from "react"
 
-interface Stage2Props extends StageProps {
+import { StageProps } from "./StageProps"
+
+export interface Stage2Props extends StageProps {
+  inputs: String[]
 }
 
-const Stage2: React.FC<Stage2Props> = ({ flowState, currentState, setStage }): JSX.Element =>
+const Stage2: React.FC<Stage2Props> = ({setNextStage, inputs}): JSX.Element =>
 {
-  const [text, setText] = useState('');
+  const [current, ...remaining] = inputs;
 
-  if (currentState === null) {
-    setStage({data:[]}) // TODO better mechnism to set default state
-    return <></>;
-  }
-
-  const onSubmit = (e : FormEvent<HTMLFormElement>) => {
+  const onSubmit = (e : React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const newState = {...currentState, data: [...currentState.data, text]}
-
-    setText(''); // TODO better mechanism to clear component state
-
-    setStage(newState, newState.data.length >= 3 ? 'end' : Stage2.name);
+    if (remaining.length <= 0) {
+      setNextStage(<>Complete</>);
+    } else {
+      setNextStage(<Stage2 setNextStage={setNextStage} inputs={remaining} />);
+    }
   }
 
-  
 
   return (<>
-    <form key={currentState.data.length} className="max-w-sm mx-auto" onSubmit={onSubmit}>
-      <div className="mb-5">
-        <label htmlFor="" className="block mb-2 text-sm font-medium text-gray-900">
-          Stage 2: {currentState.data.length + 1} of 3
-        </label>
-        <input autoFocus type="text" value={text} onChange={e => setText(e.target.value)} id="field" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Example field" required />
-      </div>
-      <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+    <form className="max-w-sm mx-auto" onSubmit={onSubmit}>
+      <h1 className="text-2xl font-bold text-center mb-5">Confirm</h1>
+      <p className="mb-2">
+        {current}
+      </p>
+      <button autoFocus type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        Confirm
+      </button>
     </form>
   </>)
 }
 
-export default Stage2
+export default Stage2;
