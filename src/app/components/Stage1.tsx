@@ -1,12 +1,12 @@
 'use client'
 
-import { FormEvent, ReactNode, useState } from "react";
+import { FormEvent, useState } from "react";
 import { StageProps } from "./StageProps";
 import Stage2 from "./Stage2";
 
 
 
-interface Stage1Props extends StageProps {
+export interface Stage1Props extends StageProps {
 }
 
 const Stage1: React.FC<Stage1Props> = ({setNextStage}): JSX.Element =>

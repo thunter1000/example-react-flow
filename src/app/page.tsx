@@ -1,8 +1,6 @@
 'use client'
-import Image from "next/image";
-import Stage1, { Stage1State } from "./components/Stage1";
+import Stage1 from "./components/Stage1";
 import { ReactNode, useState } from "react";
-import Stage2 from "./components/old/Stage2";
 
 
 export default function Home() {
