@@ -1,5 +1,5 @@
 'use client'
-import { ReactNode, useState } from "react";
+import { useState } from "react";
 import Stage1, { STAGE1_NAME, Stage1Result } from "./components/Stage1";
 import { Result, StageProps } from "./components/StageComponent.d";
 import Stage2, { STAGE2_NAME } from "./components/Stage2";

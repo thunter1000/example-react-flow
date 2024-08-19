@@ -1,6 +1,5 @@
 import { FormEvent } from "react";
 import StageComponent, { Result, StageProps } from "./StageComponent.d";
-import Stage2 from "./Stage2";
 
 interface Stage1Props extends StageProps<Stage1Result> {
 }
