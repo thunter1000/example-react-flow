@@ -20,7 +20,7 @@ export default function Home() {
     })
   }
 
-  const stageProps: <R extends Result> (stage: string) => StageProps<R> = (stage) => {
+  const generateStageProps: <R extends Result> (stage: string) => StageProps<R> = (stage) => {
     return {
       callback: (result) => setStageState(stage, result)
     }
@@ -28,8 +28,8 @@ export default function Home() {
 
   return (
     <main className="prose mx-auto my-5">
-      { (state[STAGE1_NAME]?.complete !== true && <Stage1 {...stageProps<Stage1Result>(STAGE1_NAME)}/>) ||
-        (state[STAGE2_NAME]?.complete !== true && <Stage2 stage1Result={state[STAGE1_NAME]!} {...stageProps(STAGE2_NAME)}/>) ||
+      { (state[STAGE1_NAME]?.complete !== true && <Stage1 {...generateStageProps<Stage1Result>(STAGE1_NAME)}/>) ||
+        (state[STAGE2_NAME]?.complete !== true && <Stage2 stage1Result={state[STAGE1_NAME]!} {...generateStageProps(STAGE2_NAME)}/>) ||
         <>
           <h1 className="font-light">Finished!</h1>
         </>
