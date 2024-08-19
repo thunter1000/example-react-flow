@@ -1,5 +1,5 @@
 import { FormEvent, useState } from "react";
-import { STAGE1_NAME, Stage1Result } from "./Stage1";
+import { Stage1Result } from "./Stage1";
 import StageComponent, { Result, StageProps } from "./StageComponent.d";
 
 export const STAGE2_NAME = 'stage2'
