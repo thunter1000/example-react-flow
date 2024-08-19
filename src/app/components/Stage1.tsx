@@ -10,7 +10,7 @@ export interface Stage1Result extends Result {
 
 export const STAGE1_NAME = 'stage1'
 
-const Stage1 : StageComponent<Stage1Props, Stage1Result> = ({callback: setStage}) => {
+const Stage1 : StageComponent<Stage1Props, Stage1Result> = ({callback}) => {
   
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -19,7 +19,7 @@ const Stage1 : StageComponent<Stage1Props, Stage1Result> = ({callback: setStage}
 
     const text = formData.getAll('text[]').map(String)
 
-    setStage({ text, complete: true })
+    callback({ text, complete: true })
   }
 
   return (
