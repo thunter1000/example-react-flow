@@ -1,19 +1,24 @@
 import { FormEvent, useState } from "react";
 import { STAGE1_NAME, Stage1Result } from "./Stage1";
-import StageComponent, { StageProps } from "./StageComponent.d";
+import StageComponent, { Result, StageProps } from "./StageComponent.d";
 
-interface Stage2Props extends StageProps<void> {
-  stage1Result?: Stage1Result // TODO this shouldn't be optional
+export const STAGE2_NAME = 'stage2'
+
+interface Stage2Props extends StageProps<Result> {
+  stage1Result: Stage1Result
 }
 
-const Stage2 : StageComponent<Stage2Props, void> = ({stage1Result}) => {
+const Stage2 : StageComponent<Stage2Props, Result> = ({stage1Result, callback}) => {
   const [remainingConfirmation, setRemainingConfirmation] = useState(stage1Result.text);
 
   const [current, ...remain] = remainingConfirmation;
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setRemainingConfirmation(remain)
+    if (remain.length <= 0)
+      callback({complete: true})
+    else
+      setRemainingConfirmation(remain)
   }
 
   return <>

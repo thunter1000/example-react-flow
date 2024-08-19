@@ -5,7 +5,6 @@ import Stage2 from "./Stage2";
 interface Stage1Props extends StageProps<Stage1Result> {
 }
 
-// TODO should the interface be here.
 export interface Stage1Result extends Result {
   text: String[]
 }

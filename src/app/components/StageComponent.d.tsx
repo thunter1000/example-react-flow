@@ -1,8 +1,8 @@
-type StageComponent<Props extends StageProps<R>, R extends Result | void> = {
+type StageComponent<Props extends StageProps<R>, R extends Result> = {
 } & React.FC<Props>;
 
-export interface StageProps<R extends Result|void> {
-  callback: (result?: R) => void,
+export interface StageProps<R extends Result> {
+  callback: (result: R) => void,
 }
 
 export interface Result {
