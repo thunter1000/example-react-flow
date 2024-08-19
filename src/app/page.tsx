@@ -30,7 +30,9 @@ export default function Home() {
     <main className="prose mx-auto my-5">
       { (state[STAGE1_NAME]?.complete !== true && <Stage1 {...stageProps<Stage1Result>(STAGE1_NAME)}/>) ||
         (state[STAGE2_NAME]?.complete !== true && <Stage2 stage1Result={state[STAGE1_NAME]!} {...stageProps(STAGE2_NAME)}/>) ||
-        <>Complete</>
+        <>
+          <h1 className="font-light">Finished!</h1>
+        </>
       }
         <div className="mt-10">
           <h1>State</h1>

@@ -21,6 +21,7 @@ const Stage1 : StageComponent<StageProps<Stage1Result>, Stage1Result> = ({callba
 
   return (
     <form onSubmit={onSubmit}>
+      <h1 className="font-light">Stage 1</h1>
       {
         [...Array(5).keys()].map(i => (
           <div key={i} className="mb-2">
