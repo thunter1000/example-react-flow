@@ -1,16 +1,13 @@
 import { FormEvent } from "react";
 import StageComponent, { Result, StageProps } from "./StageComponent.d";
 
-interface Stage1Props extends StageProps<Stage1Result> {
-}
-
 export interface Stage1Result extends Result {
   text: String[]
 }
 
 export const STAGE1_NAME = 'stage1'
 
-const Stage1 : StageComponent<Stage1Props, Stage1Result> = ({callback}) => {
+const Stage1 : StageComponent<StageProps<Stage1Result>, Stage1Result> = ({callback}) => {
   
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
