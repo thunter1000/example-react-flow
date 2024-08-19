@@ -42,7 +42,7 @@ export default function Home() {
   return (
     <main>
       {!state[STAGE1_NAME]?.complete && <Stage1 {...stageProps<Stage1Result>(STAGE1_NAME)}/> ||
-        <Stage2 {...stageProps<void>('TODO implement')}/> }
+        <Stage2 stage1Result={state[STAGE1_NAME]} {...stageProps<void>('TODO implement')}/> }
         <div>
           <pre>
             {JSON.stringify(state, null, 2)}
