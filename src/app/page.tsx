@@ -27,12 +27,13 @@ export default function Home() {
   }
 
   return (
-    <main>
+    <main className="prose mx-auto my-5">
       { (state[STAGE1_NAME]?.complete !== true && <Stage1 {...stageProps<Stage1Result>(STAGE1_NAME)}/>) ||
         (state[STAGE2_NAME]?.complete !== true && <Stage2 stage1Result={state[STAGE1_NAME]!} {...stageProps(STAGE2_NAME)}/>) ||
         <>Complete</>
       }
-        <div>
+        <div className="mt-10">
+          <h1>State</h1>
           <pre>
             {JSON.stringify(state, null, 2)}
           </pre>

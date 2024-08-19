@@ -20,12 +20,12 @@ const Stage1 : StageComponent<StageProps<Stage1Result>, Stage1Result> = ({callba
   }
 
   return (
-    <form className="max-w-sm mx-auto" onSubmit={onSubmit}>
+    <form onSubmit={onSubmit}>
       {
         [...Array(5).keys()].map(i => (
-          <div key={i}>
+          <div key={i} className="mb-2">
             <label htmlFor="text" className="block mb-2 text-sm font-medium">Text input {i + 1}</label>
-            <input type="text" name="text[]" id="text" defaultValue={`Text value for field ${i+1}`} autoFocus={i === 0} className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 block w-full p-2.5" />
+            <input type="text" className="w-full" name="text[]" id="text" defaultValue={`Text value for field ${i+1}`} autoFocus={i === 0} />
           </div>
         ))
       }
